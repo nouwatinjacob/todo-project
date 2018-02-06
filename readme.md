@@ -14,4 +14,4 @@ so that your app will reflect your new changes
  
  **Got any suggestions or improvement to our approaches?** Contact me on jaysansa@gmail.com
  
-#### Yours truely, [sansaristic](https://www.github.com/bennouwatinjacob)
+#### Yours truely, [sansaristic](https://www.github.com/nouwatinjacob)
