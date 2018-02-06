@@ -16,3 +16,13 @@ Route::get('/', function () {
 });
 
 Route::get('/todos', 'TodosController@index')->name('todos');
+
+Route::post('/create/todo', 'TodosController@store')->name('create.todo');
+
+Route::get('todo/delete/{id}', 'TodosController@delete')->name('todo.delete');
+
+Route::get('todo/update/{id}', 'TodosController@update')->name('todo.update');
+
+Route::post('/todo/save/{id}', 'TodosController@save')->name('todo.save');
+
+Route::get('/todos/completed/{id}', 'TodosController@marked')->name('todos.completed');

@@ -1,80 +1,23 @@
-<!doctype html>
-<html lang="{{ app()->getLocale() }}">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layout')
 
-        <title>Laravel</title>
-
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
-
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Raleway', sans-serif;
-                font-weight: 100;
-                height: 100vh;
-                margin: 0;
-            }
-
-            .full-height {
-                height: 100vh;
-            }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 25px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 12px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
-    </head>
-    <body>
-        
-            <div class="content">
-                <div class="title m-b-md">
-                    @foreach ($todos as $todo)
-                        {{ $todo->todo }}
-                        <hr>
-                    @endforeach
-                </div>
-                
-            </div>
+@section('content')
+    <div class"row">
+        <div class"col-lg-6 col-lg-offset-3">
+            <form action="{{ route('create.todo')}}" method="post">
+                {{csrf_field()}}
+                <input type="text" name="todo" id="todo" class"form-control input-lg" placeholder="Create a new Todo">
+            </form>
         </div>
-    </body>
-</html>
+    </div>
+    @foreach ($todos as $todo)
+        {{ $todo->todo }} <a class="btn btn-sm btn-danger" href="{{ route('todo.delete', ['id' => $todo->id]) }}"><span class="fas fa-trash-alt"></span></a>
+        <a class="btn btn-sm btn-primary" href="{{ route('todo.update', ['id' => $todo->id]) }}"><span class="fas fa-edit"></span></a>
+        
+        @if(!$todo->completed)
+            <a class="btn btn-sm btn-success" href="{{ route('todos.completed', ['id' => $todo->id]) }}"><span class="fas fa-check-square">Done!</span></a>
+        @else
+            <span class"text-success btn btn-success">Completed!</span>
+        @endif
+         <hr>
+    @endforeach
+@stop
